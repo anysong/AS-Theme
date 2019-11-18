@@ -43,10 +43,21 @@ $.ajaxSetup({
 httpResponse.addHeader(“Access-Control-Expose-Headers”, “REDIRECT,CONTEXTPATH”);将想要传递的字段设置一下。才能获取到值。
 ```
 
+## 跨域自定义请求头无法获取
+问题: 设置了Access-Control-Allow-Headers 跨域头,但是没法拿到响应头
+原因: 响应头部 Access-Control-Expose-Headers 列出了哪些头部可以作为响应的一部分暴露给外部
+
+后端设置:
+```
+  header('Access-Control-Expose-Headers: token');  // 坑！服务器 headers 白名单，可以让客户端进行访问
+  header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Connection, User-Agent, Cookie, token');
+```
+参考: http://www.ruanyifeng.com/blog/2016/04/cors.html
 
 
 ### 其他
 https://blog.csdn.net/mozha_666/article/details/86519642
 https://blog.csdn.net/cpongo3/article/details/88531939
+http://www.ruanyifeng.com/blog/2016/04/cors.html
 
 
