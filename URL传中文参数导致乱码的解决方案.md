@@ -60,6 +60,21 @@ String name2 = java.net.URLDecoder.decode(name1,"UTF-8");
 + 所以后端只需要解码一次,都能够正确的得到URL
 + 后端不管是按GBK还是UTF-8还是ISO-8859-1解码的结果都是相同的
 
+#### 思考
+有种说法是,如果能保证编码方式是UTF-8,且解码可配UTF-8的话,只需要转码一次
+> 一般情况下, 发送 encodeURIComponent(parmeName)+"="+encodeURIComponent(parmeValue);  
+> 接收时, 直接 String paramValue = request.getParameter(paramName); // 容器自动解码.  
+> 我们知道 encodeURIComponent 使用的是 UTF-8 编码规则来编的.  
+> 如果 request.getParameter(paramName) 时,容器也按 UTF-8 解的话,是正确的.   
+> 根本无须在客户端进行二次的 encodeURIComponent(...)  
+> 如果 request.getParameter(paramName),容器没有按 UTF-8 解的话, 结果只有一个,就是乱码!  
+> 容器按什么编码来解码,决定于 request.setCharacterEncoding(***) 或者 服务器程序配置.  
+> 如果你在 jsp 程序中,能够 request.setCharacterEncoding("UTF-8"),  
+> 并且 修改服务器配置,让容器在解 GET 提交的参数时,使用 UTF-8.  
+> 客户端提交前不用二次编码, 接收时,也只要直接 request.getParameter(paramName) 即可  
+
+
 #### 参考
 https://www.cnblogs.com/menggirl23/p/10438371.html
+https://www.jianshu.com/p/831618a8e116
 
