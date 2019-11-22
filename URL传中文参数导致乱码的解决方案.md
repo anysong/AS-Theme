@@ -1,7 +1,8 @@
 ### URL传中文参数导致乱码的解决方案
 
-#### 背景
-> 通过URL传中文参数时，在服务端后台获取到的值往往会出现乱码。解决方案有很多种。
+#### 背景(为什么要编码)
+> 当使用地址栏提交查询参数时，如果不编码，非英文字符会按照操作系统的字符集进行编码提交到服务器    
+> 服务器会按照配置的字符集进行解码，所以如果两者不一致就会导致乱码。
 
 #### 原因
 > IE、 Firefox、Chrome浏览器对URL的处理各不相同，浏览器在传输URl时得对URL进行编码，
@@ -11,26 +12,46 @@
 > 而服务器却只能以一种编码方式来对接收到的URL进行解码。  
 > 这样的话和服务器使用的编码方式一样的浏览器在使用带中文的URl时不会出现问题，其他的浏览器则会出现问题。
 
-#### 解决
+#### 为什么encodeURIComponent / encodeURI编码时要编码两次
+> encodeURI使用的是 UTF-8 编码规则来编的，当服务器接收url的参数后会自动解码一次  
+> 但自动解码的字符集不一定是UTF-8，字符集不一致时解码会出现乱码。
+
+#### 一次encodeURIComponent编码的情况：
 ```
 前端
-var url = 'aaa?name=' + encodeURIComponent(encodeURIComponent('中文'));
+var encodeUrl = encodeURIComponent("http://www.test.com/s?state=1&paramName=张三");
 后端
-String name = java.net.URLDecoder.decode(request.getParameter("name"),"UTF-8");  
+String paramValue = request.getParameter(paramName);  
+
+# 用getParameter接收后，Tomact会自动解码，
+# 如果Tomact接收请求的编码格式是UTF-8的话，解码后没有问题；
+# 如果不是UTF-8的话就会出现乱码
 ```
 
-#### 为什么前端使用两次encodeURIComponent
-> 前端在进行encode编码时，为什么用了两次encodeURI，而服务器后端在解码时只解了一次？  
-> 原因是：容器会默认帮你解一次码。  
-> 此时，你可能又要问了，既然容器会默认解一次码，那么为什么不直接在前端只进行一次encode   
-> 原因是：容器默认解码时采用的编码是容器的默认编码，可能是UTF-8，GBK，也可能是其他编码方式。  
-> 这与你的应用的编码方式未必会一致。所以你直接获取的话可能会出现乱码。  
-> 当然也可以通过修改容器的默认编码，而实现“前端一次encode——后端直接获取”的途径获取中文参数。  
- 
-> 从使用上看来，javascript使用encodeURIComponent编码一次，  
-> 如果是作为Url请求发送，浏览器是自动会作一次解码，编码方式为浏览器默认。  
-> 这样在一次编码后，请求到后台后，比如中文就成为乱码了。中间即使编码方式是一致也会乱码。  
-> 解决方法是在前台javascript使用encodeURIComponentg两次，这样浏览器解码一次后，  
-> 还是一种编码后的字符，传递到后台就不会是乱码，当然你得在后台做一次解码工作。
+#### 两次encodeURIComponent编码的情况：
+```
+前端
+var Url = encodeURIComponent("http://www.test.com/s?state=1&paramName=张三");
+var Url2 = encodeURIComponent(encodeUrl);
+后端
+String name1 = request.getParameter(paramName);
+String name2 = java.net.URLDecoder.decode(name1,"UTF-8");
 
+# Url是将中文编码成ASCII码后的URL；
+# Url2是将ASCII码编码后的URL，由于用GBK、UTF-8、ISO-8859-1对ASCII码编码的结果是相同的，
+# 所以request.getParameter("name")解码的时候，不管是按 GBK 还是 UTF-8 还是 ISO-8859-1 都好，都能够正确的得到URL。
+```
+
+#### 补充如何设置Tomcat接收请求的编码格式：
+> 可以利用request.setCharacterEncoding("UTF-8");来设置Tomcat接收请求的编码格式，  
+> 但是只对POST方式提交的数据有效，对GET方式提交的数据无效!  
+> 要设置GET的编码，可以修改server.xml文件中，相应的端口的Connector的属性：URIEncoding="UTF-8"，  
+> 这样，GET方式提交的数据才会被正确解码。
+#### ASCII码
+#### 总结
++ 当使用地址栏提交查询参数时，如果不编码，非英文字符会按照操作系统的字符集进行编码提交到服务器    
++ 服务器会按照配置的字符集进行解码，所以如果两者不一致就会导致乱码。
+
+#### 参考
+https://www.cnblogs.com/menggirl23/p/10438371.html
 
