@@ -92,6 +92,7 @@ String name2 = java.net.URLDecoder.decode(name1,"UTF-8");
 + 后端不管是按GBK还是UTF-8还是ISO-8859-1解码的结果都是相同的
 
 #### 补充IE、Firefox、Chrome浏览器对URL的编码方式
+#### 补充IE、Firefox、Chrome浏览器url展示转码方式
 #### 补充如何设置Tomcat接收请求的编码格式：
 > 可以利用request.setCharacterEncoding("UTF-8");来设置Tomcat接收请求的编码格式，  
 > 但是只对POST方式提交的数据有效，对GET方式提交的数据无效!  
