@@ -79,12 +79,11 @@ String name2 = java.net.URLDecoder.decode(name1,"UTF-8");
 + 后端需要手动解码一次
 + 弊端浏览器会显示乱码(待确认)
 
-###### 前端不encodeURIComponent
+#### 补充两次编译流程
 + 当使用地址栏提交查询参数时，如果不编码，非英文字符会按照操作系统的字符集进行编码提交到服务器。
 + IE、 Firefox、Chrome浏览器对URL的编码方式各不相同。
 + 而服务器只能以一种编码方式来对接收到的URL进行解码。
 + 服务器会按照配置的字符集进行解码，所以如果两者不一致就会导致乱码。
-###### 解决
 + 前端执行两次encodeURIComponent编码
 + 第一次执行返回ASCII码
 + 第二次执行返回将ASCII码编码后的URL
@@ -92,6 +91,7 @@ String name2 = java.net.URLDecoder.decode(name1,"UTF-8");
 + 所以后端只需要解码一次,都能够正确的得到URL
 + 后端不管是按GBK还是UTF-8还是ISO-8859-1解码的结果都是相同的
 
+#### 补充IE、Firefox、Chrome浏览器对URL的编码方式
 #### 补充如何设置Tomcat接收请求的编码格式：
 > 可以利用request.setCharacterEncoding("UTF-8");来设置Tomcat接收请求的编码格式，  
 > 但是只对POST方式提交的数据有效，对GET方式提交的数据无效!  
