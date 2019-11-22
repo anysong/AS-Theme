@@ -4,10 +4,6 @@
 > 当使用地址栏提交查询参数时，如果不编码，非英文字符会按照操作系统的字符集进行编码提交到服务器    
 > 服务器会按照配置的字符集进行解码，所以如果两者不一致就会导致乱码。
 
-#### 为什么encodeURIComponent / encodeURI编码时要编码两次
-> encodeURI使用的是 UTF-8 编码规则来编的，当服务器接收url的参数后会自动解码一次  
-> 但自动解码的字符集不一定是UTF-8，字符集不一致时解码会出现乱码。
-
 #### 一次encodeURIComponent编码的情况：
 ```
 前端
@@ -19,6 +15,15 @@ String paramValue = request.getParameter(paramName);
 # 如果Tomact接收请求的编码格式是UTF-8的话，解码后没有问题；
 # 如果不是UTF-8的话就会出现乱码
 ```
+#### 一次encodeURIComponent编码的(前端)扩展
+```
+前端
+window.location.href = "//www.test.com/Search?keyword=" + encodeURIComponent(KEYWORD) + "&enc=utf-8";
+# 标注编码方式 enc=utf-8
+```
+#### 为什么encodeURIComponent / encodeURI编码时要编码两次
+> encodeURI使用的是 UTF-8 编码规则来编的，当服务器接收url的参数后会自动解码一次  
+> 但自动解码的字符集不一定是UTF-8，字符集不一致时解码会出现乱码。
 
 #### 两次encodeURIComponent编码的情况：
 ```
@@ -45,7 +50,7 @@ String name2 = java.net.URLDecoder.decode(name1,"UTF-8");
 ###### 问题
 + 当使用地址栏提交查询参数时，如果不编码，非英文字符会按照操作系统的字符集进行编码提交到服务器。
 + IE、 Firefox、Chrome浏览器对URL的编码方式各不相同。
-+ 而服务器只能以一种编码方式来对接收到的URL进行解码。
++ 而服务器只能以一种编码方式来对接收到的URL进行解码。(可通过传参数,指定"&enc=utf-8")
 + 服务器会按照配置的字符集进行解码，所以如果两者不一致就会导致乱码。
 ###### 解决
 + 前端执行两次encodeURIComponent编码
