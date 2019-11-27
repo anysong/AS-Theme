@@ -9,10 +9,12 @@ github地址: **https://github.com/nvm-sh/nvm**
 #### 安装
 `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash`
 #### 配置
-> Running either of the above commands downloads a script and runs it. 
-> The script clones the nvm repository to ~/.nvm, 
-> and adds the source lines from the snippet below to your profile 
-> (~/.bash_profile, ~/.zshrc, ~/.profile, or ~/.bashrc).
+``` bash
+Running either of the above commands downloads a script and runs it. 
+The script clones the nvm repository to ~/.nvm, 
+and adds the source lines from the snippet below to your profile 
+(~/.bash_profile, ~/.zshrc, ~/.profile, or ~/.bashrc).
+```
 
 ``` bash
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
