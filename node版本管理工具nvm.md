@@ -8,20 +8,17 @@
 github地址: **https://github.com/nvm-sh/nvm**
 #### 安装
 `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash`
+
 #### 配置
 ``` bash
 Running either of the above commands downloads a script and runs it. 
 The script clones the nvm repository to ~/.nvm, 
 and adds the source lines from the snippet below to your profile 
 (~/.bash_profile, ~/.zshrc, ~/.profile, or ~/.bashrc).
-```
 
-``` bash
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-```
 
-``` bash
 完成后nvm就被安装在了~/.nvm下啦，接下来就需要配一下环境变量了，如果你也使用了zsh的话，就需要在~/.zshrc这个配置文件中配置，否则就找找看~/.bash_profile或者~/.profile吧。
 打开~/.zshrc，在最后一行加上：
 
@@ -29,6 +26,18 @@ export NVM_DIR="$HOME/.nvm"
 [ -s"$NVM_DIR/nvm.sh"] && ."$NVM_DIR/nvm.sh"# This loads nvm
 这一步的作用是每次新打开一个bash，nvm都会被自动添加到环境变量中了。
 完成后输入source ~/.zshrc重新启动一下配置。
+```
+
+#### 卸载
+To remove nvm manually, execute the following:
+```bash
+$ rm -rf "$NVM_DIR"
+```
+Edit ~/.bashrc (or other shell resource config) and remove the lines below:
+```bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[[ -r $NVM_DIR/bash_completion ]] && \. $NVM_DIR/bash_completion
 ```
 
 #### 命令
