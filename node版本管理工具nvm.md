@@ -4,9 +4,21 @@
 > 因此考虑到需要时常对node版本进行切换测试兼容性和一些模块对node版本的限制，我
 > 选择了使用nvm作为管理工具，下面就来说说nvm的安装和使用过程。
 
+#### nvm
+github地址: **https://github.com/nvm-sh/nvm**
 #### 安装
-`url -o-https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash`
+`curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash`
 #### 配置
+> Running either of the above commands downloads a script and runs it. 
+> The script clones the nvm repository to ~/.nvm, 
+> and adds the source lines from the snippet below to your profile 
+> (~/.bash_profile, ~/.zshrc, ~/.profile, or ~/.bashrc).
+
+``` bash
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+```
+
 > 完成后nvm就被安装在了~/.nvm下啦，接下来就需要配一下环境变量了，  
 > 如果你也使用了zsh的话，就需要在~/.zshrc这个配置文件中配置，
 > 否则就找找看~/.bash_profile或者~/.profile吧。  
