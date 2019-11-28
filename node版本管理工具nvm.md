@@ -62,17 +62,17 @@ export NVM_DIR="$HOME/.nvm"
 
 ```
 
-#### 卸载
+#### 卸载nvm
 To remove nvm manually, execute the following:
 ```bash
 # to remove, delete, or uninstall nvm - just remove the `$NVM_DIR` folder (usually `~/.nvm`)
-$ rm -rf "$NVM_DIR"
-```
-Edit ~/.bashrc (or other shell resource config) and remove the lines below:
-```bash
+$ rm -rf "$NVM_DIR" (usually `~/.nvm`)
+
+# Edit ~/.bashrc (or other shell resource config) and remove the lines below:
+# 编辑shell文件 删除nvm配置
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-[[ -r $NVM_DIR/bash_completion ]] && \. $NVM_DIR/bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 ```
 
 #### 使用系统原来的node
@@ -99,11 +99,18 @@ npm ls --depth=0 -g
 
 #### 命令
 ```bash
+$ nvm (tab)
+alias               deactivate          install             ls                  run                 unload
+clear-cache         exec                list                ls-remote           unalias             use
+current             help                list-remote         reinstall-packages  uninstall           version
+
+# Note:
 nvm ls-remote：列出所有可以安装的node版本号  
 nvm install v10.4.0：安装指定版本号的node  
 nvm use v10.3.0：切换node的版本，这个是全局的  
 nvm current：当前node版本  
-nvm ls：列出所有已经安装的node版本  
+nvm ls：列出所有已经安装的node版本 
+nvm uninstall
 
 # Example:
 nvm install 8.0.0                     Install a specific version number
