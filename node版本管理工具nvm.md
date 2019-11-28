@@ -6,15 +6,26 @@
 
 #### nvm
 github地址: **https://github.com/nvm-sh/nvm**
+#### 重要建议  
+1. nvm不支持Windows 但有变通方法 详见官方文档 Note: nvm does not support Windows
+2. Note: nvm does not support Fish
+3. 如果你用zsh 可以安装zsh-nvm 通过run nvm upgrade to upgrade
+4. 如果你安装了系统的node,并且想全局安装模块,注意以下几点:
+
++ When using nvm you do not need sudo to globally install a module with npm -g, so instead of doing sudo npm install -g grunt, do instead npm install -g grunt
+
++ If you have an ~/.npmrc file, make sure it does not contain any prefix settings (which is not compatible with nvm)
+
++ You can (but should not?) keep your previous "system" node install, but nvm will only be available to your user account (the one used to install nvm). This might cause version mismatches, as other users will be using /usr/local/lib/node_modules/* VS your user account using ~/.nvm/versions/node/vX.X.X/lib/node_modules/*
+
+5. 官方不建议用brew安装nvm 如已经安装建议卸载
+```bash
+Homebrew installation is not supported. If you have issues with homebrew-installed nvm, please brew uninstall it, and install it using the instructions below, before filing an issue.
+```
 #### 安装&更新
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
 ```
-#### 官方不建议用brew安装nvm 如已经安装建议卸载
-```bash
-Homebrew installation is not supported. If you have issues with homebrew-installed nvm, please brew uninstall it, and install it using the instructions below, before filing an issue.
-```
-
 #### 配置
 ``` bash
 
