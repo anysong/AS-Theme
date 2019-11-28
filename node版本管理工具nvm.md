@@ -32,6 +32,7 @@ export NVM_DIR="$HOME/.nvm"
 #### 卸载
 To remove nvm manually, execute the following:
 ```bash
+# to remove, delete, or uninstall nvm - just remove the `$NVM_DIR` folder (usually `~/.nvm`)
 $ rm -rf "$NVM_DIR"
 ```
 Edit ~/.bashrc (or other shell resource config) and remove the lines below:
@@ -57,3 +58,12 @@ nvm run system --version
 `nvm use v10.3.0`：切换node的版本，这个是全局的  
 `nvm current`：当前node版本  
 `nvm ls`：列出所有已经安装的node版本  
+```bash
+Example:
+  nvm install 8.0.0                     Install a specific version number
+  nvm use 8.0                           Use the latest available 8.0.x release
+  nvm run 6.10.3 app.js                 Run app.js using node 6.10.3
+  nvm exec 4.8.3 node app.js            Run `node app.js` with the PATH pointing to node 4.8.3
+  nvm alias default 8.1.0               Set default node version on a shell
+  nvm alias default node                Always default to the latest available node version on a shell
+```
