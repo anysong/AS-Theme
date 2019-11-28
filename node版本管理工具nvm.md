@@ -6,6 +6,7 @@
 
 #### nvm
 github地址: **https://github.com/nvm-sh/nvm**
+
 #### 重要建议  
 1. nvm不支持Windows 但有变通方法 详见官方文档 Note: nvm does not support Windows
 2. Note: nvm does not support Fish
@@ -29,6 +30,18 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
 ```bash
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
 ```
+
+#### 如果使用zsh 建议使用zsh-nvm
+If you're using zsh you can easily install nvm as a zsh plugin. Install zsh-nvm and run nvm upgrade to upgrade.
+##### [zsh-nvm](https://github.com/lukechilds/zsh-nvm)
+```bash
+# 手动安装
+git clone https://github.com/lukechilds/zsh-nvm.git ~/.zsh-nvm
+
+# 在~/.zshrc这个配置文件中配置
+source ~/.zsh-nvm/zsh-nvm.plugin.zsh
+```
+
 #### 配置
 ``` bash
 
@@ -91,3 +104,4 @@ nvm alias default node                Always default to the latest available nod
 + nvm管理版本的好处是放便切换各个版本的node及其对应的全局依赖
 + nvm可以和系统原来的node共存 如果需要使用系统原来的node，运行`nvm use system`即可
 + 官方不建议用brew安装nvm 如已经安装建议卸载 `brew uninstall it`
++ 可以使用zsh-nvm 管理nvm版本 `nvm upgrade` If you want to upgrade to the latest release of nvm
