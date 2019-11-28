@@ -26,6 +26,9 @@ Homebrew installation is not supported. If you have issues with homebrew-install
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
 ```
+```bash
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
+```
 #### 配置
 ``` bash
 
@@ -35,8 +38,10 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
 
 # nvm 配置
 export NVM_DIR="$HOME/.nvm"
+
 # 每次新打开一个bash，nvm都会被自动添加到环境变量中了。
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
 # Linux下命令补全工具bash-completion
 # 安装 bash-completion 后，可用tab键补齐几乎任何内容，包括参数、文件、目录甚至包名等
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -75,10 +80,10 @@ nvm run system --version
 `nvm ls`：列出所有已经安装的node版本  
 ```bash
 Example:
-  nvm install 8.0.0                     Install a specific version number
-  nvm use 8.0                           Use the latest available 8.0.x release
-  nvm run 6.10.3 app.js                 Run app.js using node 6.10.3
-  nvm exec 4.8.3 node app.js            Run `node app.js` with the PATH pointing to node 4.8.3
-  nvm alias default 8.1.0               Set default node version on a shell
-  nvm alias default node                Always default to the latest available node version on a shell
+nvm install 8.0.0                     Install a specific version number
+nvm use 8.0                           Use the latest available 8.0.x release
+nvm run 6.10.3 app.js                 Run app.js using node 6.10.3
+nvm exec 4.8.3 node app.js            Run `node app.js` with the PATH pointing to node 4.8.3
+nvm alias default 8.1.0               Set default node version on a shell
+nvm alias default node                Always default to the latest available node version on a shell
 ```
