@@ -125,3 +125,4 @@ nvm alias default node                Always default to the latest available nod
 + nvm可以和系统原来的node共存 如果需要使用系统原来的node，运行`nvm use system`即可
 + 官方不建议用brew安装nvm 如已经安装建议卸载 `brew uninstall it`
 + 可以使用zsh-nvm 管理nvm版本 `nvm upgrade` If you want to upgrade to the latest release of nvm
++ 必须设置为默认版本 新建终端才会生效 `nvm alias default node`
