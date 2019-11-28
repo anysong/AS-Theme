@@ -84,6 +84,15 @@ nvm run system --version
 # 切换其他版本的node还是使用nvm use <版本号>
 ```
 
+#### 切换node版本的时候，将全局npm包一键切换(重下载原版本Npm包)
+```bash
+nvm install node --reinstall-packages-from=node
+```
+#### 获取当前node支持的最新版npm
+```bash
+nvm install-latest-npm
+```
+
 #### 命令
 ```bash
 nvm ls-remote：列出所有可以安装的node版本号  
