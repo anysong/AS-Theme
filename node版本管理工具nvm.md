@@ -92,6 +92,10 @@ nvm install node --reinstall-packages-from=node
 ```bash
 nvm install-latest-npm
 ```
+#### 查看当前全局依赖
+```bash
+npm ls --depth=0 -g
+```
 
 #### 命令
 ```bash
