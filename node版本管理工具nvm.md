@@ -72,14 +72,14 @@ nvm run system --version
 ```
 
 #### 命令
-
-`nvm ls-remote`：列出所有可以安装的node版本号  
-`nvm install v10.4.0`：安装指定版本号的node  
-`nvm use v10.3.0`：切换node的版本，这个是全局的  
-`nvm current`：当前node版本  
-`nvm ls`：列出所有已经安装的node版本  
 ```bash
-Example:
+nvm ls-remote：列出所有可以安装的node版本号  
+nvm install v10.4.0：安装指定版本号的node  
+nvm use v10.3.0：切换node的版本，这个是全局的  
+nvm current：当前node版本  
+nvm ls：列出所有已经安装的node版本  
+
+# Example:
 nvm install 8.0.0                     Install a specific version number
 nvm use 8.0                           Use the latest available 8.0.x release
 nvm run 6.10.3 app.js                 Run app.js using node 6.10.3
@@ -87,3 +87,7 @@ nvm exec 4.8.3 node app.js            Run `node app.js` with the PATH pointing t
 nvm alias default 8.1.0               Set default node version on a shell
 nvm alias default node                Always default to the latest available node version on a shell
 ```
+#### 总结
++ nvm管理版本的好处是放便切换各个版本的node及其对应的全局依赖
++ nvm可以和系统原来的node共存 如果需要使用系统原来的node，运行`nvm use system`即可
++ 官方不建议用brew安装nvm 如已经安装建议卸载 `brew uninstall it`
