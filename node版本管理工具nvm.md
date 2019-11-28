@@ -6,7 +6,7 @@
 
 #### nvm
 github地址: **https://github.com/nvm-sh/nvm**
-#### 安装
+#### 安装&更新
 `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash`
 
 #### 配置
@@ -38,6 +38,15 @@ Edit ~/.bashrc (or other shell resource config) and remove the lines below:
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 [[ -r $NVM_DIR/bash_completion ]] && \. $NVM_DIR/bash_completion
+```
+
+#### 使用系统原来的node
+```bash
+nvm use system
+nvm run system --version
+# 想要使用系统原来的node，运行nvm use system即可，
+# 如果想要设置系统原来的node为默认运行的node，nvm alias default system 即可，
+# 切换其他版本的node还是使用nvm use <版本号>
 ```
 
 #### 命令
