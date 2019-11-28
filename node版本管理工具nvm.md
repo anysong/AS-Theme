@@ -19,7 +19,8 @@ and adds the source lines from the snippet below to your profile
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-完成后nvm就被安装在了~/.nvm下啦，接下来就需要配一下环境变量了，如果你也使用了zsh的话，就需要在~/.zshrc这个配置文件中配置，否则就找找看~/.bash_profile或者~/.profile吧。
+完成后nvm就被安装在了~/.nvm下啦，接下来就需要配一下环境变量了，
+如果你也使用了zsh的话，就需要在~/.zshrc这个配置文件中配置，否则就找找看~/.bash_profile或者~/.profile吧。
 打开~/.zshrc，在最后一行加上：
 
 export NVM_DIR="$HOME/.nvm"
