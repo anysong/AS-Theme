@@ -7,7 +7,13 @@
 #### nvm
 github地址: **https://github.com/nvm-sh/nvm**
 #### 安装&更新
-`curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash`
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
+```
+#### 官方不建议用brew安装nvm 如已经安装建议卸载
+```bash
+Homebrew installation is not supported. If you have issues with homebrew-installed nvm, please brew uninstall it, and install it using the instructions below, before filing an issue.
+```
 
 #### 配置
 ``` bash
