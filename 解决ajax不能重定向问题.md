@@ -1,16 +1,16 @@
-## 解决ajax不能重定向问题
+### 解决ajax不能重定向问题
 
-### 背景
+#### 背景
 > 以前写response.sendRedirect("/login.jsp");是成功的，今天用到ajax请求，发送给后台，希望直接跳转，发现无效，
 > 首先要深入了解ajax请求和response.sendRedirect的机制
-#### response.sendRedirect的机制
+##### response.sendRedirect的机制
 > 这种方式是在客户端作的重定向处理。该方法通过修改HTTP协议的HEADER部分,对浏览器下达重定向指令的，让浏览器对在location中指定的URL提出请求，
 > 使浏览器显示重定向网页的内容。该方法可以接受绝对的或相对的URLs。如果传递到该方法的参数是一个相对的URL，
 > 那么Web container在将它发送到客户端前会把它转换成一个绝对的
 
 首先需要确认XHR,JSONP,CORS
 
-### XHR
+#### XHR
 原因: ajax 是默认就是不支持重定向的，它是局部刷新，不重新加载页面。  
 解决: ajax请求可以用getResponseHeader获取头信息  
 后端: 添加响应头
@@ -33,17 +33,17 @@ $.ajaxSetup({
 })
 ```
 
-### JSONP
+#### JSONP
 原因: jsonp的本质是script标签, 所以通过是获取不到请求头的。getResponseHeader的值一直为空。
 
-### CORS
+#### CORS
 原因: 通过CORS方式解决的ajax跨域,是获取不到请求头的。getResponseHeader的值一直为空。
 解决: 通过Access-Control-Expose-Headers来设置响应头的白名单。
 ```
 httpResponse.addHeader(“Access-Control-Expose-Headers”, “REDIRECT,CONTEXTPATH”);将想要传递的字段设置一下。才能获取到值。
 ```
 
-## 跨域自定义请求头无法获取
+### 跨域自定义请求头无法获取
 问题: 设置了Access-Control-Allow-Headers 跨域头,但是没法拿到响应头
 原因: 响应头部 Access-Control-Expose-Headers 列出了哪些头部可以作为响应的一部分暴露给外部
 
@@ -55,7 +55,7 @@ httpResponse.addHeader(“Access-Control-Expose-Headers”, “REDIRECT,CONTEXTP
 参考: http://www.ruanyifeng.com/blog/2016/04/cors.html
 
 
-### 其他
+#### 其他
 https://blog.csdn.net/mozha_666/article/details/86519642
 https://blog.csdn.net/cpongo3/article/details/88531939
 http://www.ruanyifeng.com/blog/2016/04/cors.html

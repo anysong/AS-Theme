@@ -1,11 +1,12 @@
+### nvm
+github地址: **https://github.com/nvm-sh/nvm**
+
 #### nvm 还是 n
 > nvm有点类似于 Python 的 virtualenv 或者 Ruby 的 rvm，
 > 每个node版本的模块都会被安装在各自版本的沙箱里面（因此切换版本后模块需重新安装），
 > 因此考虑到需要时常对node版本进行切换测试兼容性和一些模块对node版本的限制，我
 > 选择了使用nvm作为管理工具，下面就来说说nvm的安装和使用过程。
 
-#### nvm
-github地址: **https://github.com/nvm-sh/nvm**
 
 #### 重要建议  
 1. nvm不支持Windows 但有变通方法 详见官方文档 Note: nvm does not support Windows
