@@ -10,7 +10,7 @@ npm install -g @vue/cli@3
 ```
 接下来我们在命令行运行
 ```bash
-vue create demo
+vue create vue-demo
 ```
 这时候它会提醒我们来选择需要安装的选项
 ```bash
@@ -23,6 +23,7 @@ Vue CLI v3.12.1
   Manually select features 
 ```
 初次搭建，选择 Manually select features
+选择 Babel Router Vuex CSS Pre-processors （使用空格键选中） 进行下一步插件配置
 ```bash
 Vue CLI v3.12.1
 ┌───────────────────────────┐
@@ -33,11 +34,16 @@ Vue CLI v3.12.1
 ❯◉ Babel
  ◯ TypeScript
  ◯ Progressive Web App (PWA) Support
- ◯ Router
- ◯ Vuex
- ◯ CSS Pre-processors
- ◉ Linter / Formatter
+ ◉ Router
+ ◉ Vuex
+ ◉ CSS Pre-processors
+ ◯ Linter / Formatter
  ◯ Unit Testing
  ◯ E2E Testing
 ```
-选择 Babel Router Vuex CSS Pre-processors （使用空格键选中） 进行下一步
+
+配置完成后就开始安装了 `注意`:安装过程可能会有各种报错,请参考[报错](https://github.com/anysong/AS-command/blob/master/%E6%8A%A5%E9%94%99.md)来解决, 等待安装完毕后执行
+```bash
+$ cd vue-demo
+$ npm run serve
+```
