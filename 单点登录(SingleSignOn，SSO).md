@@ -21,10 +21,12 @@
 ##### 同域下的单点登录
 
 一个企业只有一个域名，通过二级域名区分不同的系统。  
-比如我们的域名是`fw.jclps.com`,另外我们还有几个系统:
-+ `lb.jclps.com`
-+ `cmall.jclps.com`
+比如我们的域名是`a.jclps.com`,另外我们还有几个系统:
++ `b.jclps.com`
++ `c.jclps.com`
 这时,我们要做单点登录（SSO），需要一个登录系统，叫做`sso.jclps.com`。可以将Cookie的域设置为顶域，即`jclps.com`,**我们在设置Cookie时，只能设置顶域和自己的域，不能设置其他的域。** 这样Cookie的问题解决了。
+
+![alt sso1](./img/sso1.png)
 
 但这不算是真正的单点登录。同域下的单点登录是巧用了Cookie顶域的特性。如果是不同域呢？不同域之间Cookie是不共享的，怎么办？
 
@@ -32,18 +34,24 @@
 
 CAS官网上的标准流程，具体流程如下：
 
-1. 用户访问`lb.jclps.com`系统，`lb.jclps.com`系统是需要登录的，但用户现在没有登录。
+1. 用户访问`a.jclps.com`系统，`a.jclps.com`系统是需要登录的，但用户现在没有登录。
 2. 跳转到CAS server，即SSO登录系统，弹出用户登录页。
 3. 用户填写用户名、密码，SSO系统进行认证后，将登录状态写入SSO的session，浏览器（Browser）中写入SSO域下的Cookie。
-4. SSO系统登录完成后会生成一个Service Ticket，然后跳转到`lb.jclps.com`系统，同时将Service Ticket作为参数传递给`lb.jclps.com`系统。
-5. `lb.jclps.com`系统拿到Service Ticket后，从后台向SSO发送请求，验证Service Ticket是否有效。
-6. 验证通过后，`lb.jclps.com`系统将登录状态写入session并设置`lb.jclps.com`域下的Cookie。
+4. SSO系统登录完成后会生成一个Service Ticket，然后跳转到`a.jclps.com`系统，同时将Service Ticket作为参数传递给`a.jclps.com`系统。
+5. `a.jclps.com`系统拿到Service Ticket后，从后台向SSO发送请求，验证Service Ticket是否有效。
+6. 验证通过后，`a.jclps.com`系统将登录状态写入session并设置`a.jclps.com`域下的Cookie。
 
 以上是标准的sso的流程, 然而到具体的项目, 可能会有一些不同, 但总体的流程不变.
 
+![alt sso1](./img/sso2.png)
+
 ##### 前后端分离的单点登录
 
-现在很多管理系统都是前后端分离的, 需要有哪些注意的点呢, 如下图TODO
+现在很多管理系统都是前后端分离的, 需要有哪些注意的点呢, 如下图
+
+基本逻辑不变,主要就是后台302的地方改为前端跳转, 跳转页面改为跳转到对应系统的后台接口
+
+![alt sso1](./img/sso3.png)
 
 ##### 主站的垂直域的SSO
 
